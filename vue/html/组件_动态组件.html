@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="" />
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <h3>点击button的时候，改变currentTab值，然后使用这个值去匹配components中的组件，匹配上就渲染</h3>
+    <h3>存在一个问题：渲染过的组件，再次点击，会重新渲染。如何阻止多次渲染？？？</h3>
+    <div class="component-demo">
+        <button 
+            v-for="tab of tabs"
+            :key="tab"
+            :class="['tab',{'active' : tab===currentTab}]"
+            @click="currentTab = tab"
+        >
+        {{tab}}
+        </button>
+        <component :is="currentTab"></component>
+    </div>
+    <script>
+        let tabs = ["index","post","archive"];
+        let indexComponent = {template : `<div>index-component</div>`};
+        let postComponent = {template : `<div>post-component</div>`};
+        let archiveComponent = {template : `<div>archive-component</div>`};
+
+        new Vue({
+            el : ".component-demo",
+            data : {
+                currentTab : tabs[0],
+                tabs : tabs
+            },
+            components : {
+                index : indexComponent,
+                post : postComponent,
+                archive : archiveComponent
+            }
+            
+            // computed : {
+            //     changetab : function (){
+            //         this.currentTab = tab;
+            //     }
+            // }
+        })
+    </script>
+</body>
+</html>

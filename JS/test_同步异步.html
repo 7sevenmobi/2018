@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>单线程：同步和异步</title>
+	<style type="text/css">
+
+		*::selection{color:#f40;}
+		h1,h2,h3,h4,h5,h6{text-align:center;}
+		a{display:block;margin:2em;}
+
+	</style>
+</head>
+<body>
+		<h3>
+			<a href="http://www.ruanyifeng.com/blog/2014/10/event-loop.html">阮一峰：同步和异步</a>
+			<a href="http://www.ruanyifeng.com/blog/2012/12/asynchronous%EF%BC%BFjavascript.html">阮一峰：异步编程的4种方法</a>
+		</h3>
+		<p>
+			<img src="../images/Event Loop.png" alt="" style="float:left;">
+			<span>上图中，主线程运行的时候，产生堆（heap）和栈（stack），栈中的代码调用各种外部API，它们在"任务队列"中加入各种事件（click，load，done）。只要栈中的代码执行完毕，主线程就会去读取"任务队列"，依次执行那些事件所对应的回调函数。</span>
+		</p>
+		<pre style="line-height:1.4em;font-size:1.4em;">
+Event Loop：
+	1、所有同步任务都在主线程上执行，形成一个“执行栈”（execution context stack）
+	2、主线程之外，还存在一个“任务队列”（task queue），
+		只要异步任务有了运行结果，就在“任务队列”之中放置一个事件
+	3、一旦“执行栈”中的同步任务都执行完毕，主线程就会读取“任务队列”，看看有哪些事件和定时器，
+		这些事件和定时器对应的异步任务于是就结束等待状态，进入“执行栈”，开始执行异步回调函数
+定时器（setTimeout和setInterval）：
+	1、任务队列 除了存放异步任务，还可以存放 定时器，它是指定某个任务在主线程最早可得闲的时间执行
+		（例如：指定3000ms，但是执行栈执行完同步任务需要5000ms，则必须等待5000ms之后执行）。
+		<span style="text-decoration:line-through">它在 任务队列尾部 添加一个事件，因此，要等待 执行栈和任务队列现有的事件处理完之后，才能执行</span>
+	2、HTML5规定：setTimeout的第二个参数的最小值，不得低于4ms，如果低于这个值，则自动增加到4ms
+		</pre>
+		<script>
+				setTimeout(()=>{console.log('settimeout1')},2000);
+
+				setTimeout(()=>{console.log('settimeout2')},0);	
+
+				document.body.onload = function (){
+					// let img = new Image();
+					// img.src = '../images/Event Loop.png';
+					// img.style.position = 'fixed';
+					// img.style.right = 0;
+					// img.style.top = 0;
+					// document.body.appendChild(img);
+					console.log('onload');
+				};
+
+				setTimeout(()=>{console.log('settimeout3')},0);
+				
+				console.log('global');
+				
+
+				// function Per(){
+				// 	this.s1 = 's1';
+				// 	this.s2 = 's2';
+
+				// 	setInterval(()=>{
+				// 		console.log(new Date(),'per',this.s1+='1');
+				// 	},3000);
+
+				// 	setTimeout(()=>{
+				// 		this.s2+'2';
+				// 	},3000);
+				// }
+
+				// setTimeout(()=>{console.log(new Date(),new Per().s1)},3000);
+				//alert(new Per().s2);
+
+		</script>
+</body>
+</html>

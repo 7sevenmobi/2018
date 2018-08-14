@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="" />
+    <script src=""></script>
+</head>
+<body>
+    <h2><a href="http://es6.ruanyifeng.com/#docs/reflect">阮一峰：Reflect</a></h2>
+    <p>可以理解成是一个方法的集合对象，该对象集合了Object和Proxy对象中的方法，这些方法都是对对象的操作</p>
+    <p><a href="https://www.w3ctech.com/topic/1097">Object.observe观察者模式，监视对象内部属性的变化，做出相应的操作。存在兼容性问题</a></p>
+    <p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/observe">MDZ observe解释</a></p>    
+<pre>
+    <script>
+        // Object
+        //     apply: ƒ apply()
+        //     construct: ƒ construct()
+        //     defineProperty: ƒ defineProperty()
+        //     deleteProperty: ƒ deleteProperty()
+        //     get: ƒ ()
+        //     getOwnPropertyDescriptor: ƒ getOwnPropertyDescriptor()
+        //     getPrototypeOf: ƒ getPrototypeOf()
+        //     has: ƒ has()
+        //     isExtensible: ƒ isExtensible()
+        //     ownKeys: ƒ ownKeys()
+        //     preventExtensions: ƒ preventExtensions()
+        //     set: ƒ ()
+        //     setPrototypeOf: ƒ setPrototypeOf()
+        //     __proto__: Object
+        // console.log(Reflect);
+
+
+        let obj = {
+            name : '7seven',
+            age : 25,
+            get add(){
+                return this.name + this.age
+            }
+        };
+
+        let receiverObj = {
+            name : 'receiverObj',
+            age : 000
+        };
+        // 没有添加 get 关键字
+        // 7seven
+        // ƒ add(){
+        //     return this.name + this.age
+        // }
+
+        // 添加 get 关键字
+        // 7seven
+        // 7seven25
+        // console.log(Reflect.get(obj,'name'));
+        // console.log(Reflect.get(obj,'add'));
+        
+        // 第三个参数改变obj的this指向，所以返回值是receiverObj
+        // console.log(Reflect.get(obj,'add',receiverObj));
+
+    </script>
+</pre>
+</body>
+</html>

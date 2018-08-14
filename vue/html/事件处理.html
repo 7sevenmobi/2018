@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="" />
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+<section>
+    <div @click.self>
+        .self: 只当 event.target 是当前元素自身时触发处理函数，即事件不是从内部元素触发的<hr>
+        <p @click.stop>.stop：阻止事件向上传播（事件冒泡）</p><hr>
+        <a href="http://www.baidu.com" @click.prevent>.prevent: 阻止元素默认行为。例如: submit按钮提交会重载、带href的锚链接会跳转等等</a><hr>
+    </div>
+
+    <p>.capture：添加事件监听器时使用事件捕获模式，即元素自身触发的事件先在此处处理，然后才交由内部元素进行处理</p><hr>
+    <p>.once：事件只会触发一次。不像其它只能对原生的 DOM 事件起作用的修饰符，.once 修饰符还能被用到自定义的组件事件上。</p><hr>
+    <p>.passive：滚动事件的默认行为 (即滚动行为) 将会立即触发，而不会等待 `onScroll` 完成 。这其中包含 `event.preventDefault()` 的情况，所以.passive 会告诉浏览器你不想阻止事件的默认行为。</p><hr>
+	<p>注意：使用修饰符时，顺序很重要；相应的代码会以同样的顺序产生。因此，用 v-on:click.prevent.self 会阻止所有的点击，而 v-on:click.self.prevent 只会阻止对元素自身的点击。</p><hr>
+    
+	<form action="" @submit.prevent>
+	    <input type="submit" value="submit" />
+    </form>
+</section>    
+    <script>
+        new Vue({
+            el : "section",
+            data(){
+                return {}
+            },
+            methods : {}
+        })
+    </script>
+
+</body>
+</html>

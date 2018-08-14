@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0,minimum-scale=1.0,maximum-scale=1.0">
+	<title></title>
+	<script src="../js/vue.js"></script>
+</head>
+<body>
+	<h2>v-if, v-else, v-show</h2>
+	<ul>
+		<li>v-if： 判断是否渲染到DOM树，可以减轻服务器的压力，按需加载。v-else结合使用。</li>
+		<li>v-show：节点会渲染到DOM树，只是设置dispaly=none；可以客户端操作更加流畅。</li>
+	</ul>
+
+	<p v-show="isHide">{{loginG}}</p>
+
+<!--
+	<p v-if="isHide">{{loginG}}</p>
+	<p v-else>请登录</p>
+-->
+
+<!--
+	<p v-else>{{logoutG}}</p>
+	此时显示{{logoutG}}，没有解析？？？
+-->
+<script>
+	
+		new Vue({
+			el:"p",
+			data:{
+				//loginG:"你好，欢迎到来！！！",
+				//logoutG:"请登录",
+				isHide:false
+			}
+		})
+
+</script>
+</body>
+</html>

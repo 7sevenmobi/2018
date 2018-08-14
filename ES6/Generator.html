@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="" />
+    <script src=""></script>
+</head>
+<body>
+        <h2><a href="http://es6.ruanyifeng.com/#docs/generator">阮一峰：generator</a></h2>
+    <pre>
+        <script>
+//  <!-- 
+//             function* fool(){
+//                 let re = yield 25;
+//                 console.log(re);
+//             }
+
+//             let g = fool();
+            
+//             // {value:25,done:false}
+//             console.log(g.next());
+            
+//             // undefined
+//             // yield语句本身没有返回值，所以变量re没有赋值
+//             g.next();
+//  -->
+                
+                let gen = function* (){
+                    yield 1;
+                    yield 2;
+                    return 3;
+                    yield 4;
+                };
+
+                let g = gen();
+                console.log(g.next());
+                console.log(g.next());
+                console.log(g.next());
+                console.log(g.next());
+
+//  <!-- 
+//                 var gg = function* (){
+//                     try{
+//                         yield;
+//                     }catch(e){
+//                         console.log(e,'inner');
+//                     }
+//                 };
+
+//                 var i = gg();
+//                 i.next();
+
+//                 try{
+//                     i.throw('a');
+//                     i.throw('b');
+//                 }catch(e){
+//                     console.log(e,'outer');
+//                 }
+//                 // a inner
+//                 // b outer
+//  -->
+//  <!--
+                // let gen = function* (){
+                //     try{
+                //         console.log('start');
+                //         console.log(`1、${yield}`);
+                //         console.log(`2、${yield}`);
+                //         // return 'DONE';
+                //     }catch(e){
+                //         console.log(e,'内部捕获');
+                //     }
+                //     // throw抛出错误被捕获后，会附带执行一次next方法
+                //     yield console.log('catch附带执行的');
+                // };
+
+                // let g = gen();
+
+                // // Generator函数从暂停状态到恢复运行，其上下文状态（执行环境）是不变的。所以，为next方法添加参数，可以适当改变函数行为
+                // // next方法的参数的意思是：上一条yield语句的返回值
+                // // 所以，第一次调用next方法，传递参数没有意义。可以理解成启动遍历器对象
+                
+                // // start
+                // g.next();
+
+                // // 1. haha
+                // g.next('haha');
+                // // 2. hehe
+                // g.next('hehe');
+                
+                // // 当next方法返回的对象的done为true时，就会终止执行，且不包含该返回对象，所以无返回值
+                // // g.next('henhen');
+                
+                // // 自己的错误，自己捕获
+                // // 遍历器对象如果内部没有部署try...catch代码块，将会由外部catch捕获
+                
+                // // start  
+                // // 1、haha 
+                // // 2、hehe     
+                // // catch附带执行的   
+                // // Error: its wrong  "外部捕获"
+                // try{
+                //     g.throw(new Error('its wrong'));
+                // }catch(e){
+                //     console.log(e,'外部捕获');
+                // }
+//  -->
+
+
+
+        </script>
+    </pre>
+</body>
+</html>

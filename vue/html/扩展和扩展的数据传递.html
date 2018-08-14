@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0,minimum-scale=1.0,maximum-scale=1.0">
+	<title></title>
+	<script src="../js/vue.js"></script>
+</head>
+<body>
+
+	<p>模板挂载会替换掉原标签</p>
+
+	<section></section>
+
+	<div></div>
+
+<script>
+
+	const a = Vue.extend({
+		template : "<p>{{message}}--{{pro}}</p>",
+		data : function (){
+			return {
+				message : "propsData传递的属性名要和props里的保持一致"
+			}
+		},
+		props : ["pro"]
+	});
+
+	new a({propsData : {pro: 32}}).$mount("section");
+	new a({propsData : {pro: 77}}).$mount("div");
+
+</script>
+</body>
+</html>

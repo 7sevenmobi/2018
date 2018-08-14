@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0,minimum-scale=1.0,maximum-scale=1.0">
+	<title></title>
+	<script src="../js/vue.js"></script>
+</head>
+<body>
+	<h2>v-for in，v-text，v-html，computed</h2>
+	<ul>
+		<li v-for="number in sortNumbers">
+			{{number}}
+		</li>
+	</ul>
+	<dl>
+		<dt v-text="intro"></dt>
+		<li v-for="(student,apppp) in sortStudents">
+			{{apppp}}{{student.name}}--{{student.age}}
+		</li>
+	</dl>
+
+<script>
+	
+		new Vue({
+			el:"ul",
+			data:{
+				numbers:[2,62,8,19,90,23,56,43]
+			},
+			computed:{
+				//这里不要和data里的numbers重名，否则报错（vue的数据保护机制）
+				sortNumbers:function(){
+					return this.numbers.sort(function(a,b){
+						return a-b;
+					})
+				},
+			}
+		})
+
+		new Vue({
+			el:"dl",
+			data:{
+				intro : "apppp是数组索引，可自命名",
+				students:[
+					{name:"张三",age:19},
+					{name:"李四",age:21},
+					{name:"王五",age:19},
+					{name:"赵六",age:65},
+					{name:"武七",age:34}
+				]
+			},
+			computed:{
+				//这里不要和data里的numbers重名，否则报错（vue的数据保护机制）
+				sortNumbers:function(){
+					return this.numbers.sort(function(a,b){
+						return a-b;
+					})
+				},
+				sortStudents:function(){
+					
+					const sortByKey = function (array,key){
+							return array.sort(function (a,b){
+										const x = a[key];
+										const y = b[key];
+										return Number(x)-Number(y);
+									});
+					};
+
+					return sortByKey(this.students,"age");
+				}
+			}
+		})
+
+</script>
+</body>
+</html>

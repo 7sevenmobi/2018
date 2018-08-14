@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="" />
+    <script src=""></script>
+</head>
+<body>
+    <pre>
+        <script>
+            // let f = async function (){
+            //     let m = await hello();
+            //     return 'f';
+            // };
+
+            // let hello = async function (){
+            //     console.log('helloFn');
+            // };
+
+            // f().then(r => console.log(r));
+
+            // console.log('global');
+            // helloFn
+            // global
+            // f
+
+            //fetch发送数据
+            //支持CORS跨域,没有办法接受jsonp数据
+            function getData() {
+                //支持 cors跨域url地址'http://api.yytianqi.com/air?city=CH010100&key=2c5br4sgmguremgg'
+                //https://api.douban.com/v2/book/1220562?callback=func
+            return fetch('https://api.douban.com/v2/book/1220562?callback=func')
+                    .then(function (response) {
+                        console.log(response);
+                        //promise对象返回
+                        return response.json();
+                    })
+            }
+            getData().then(function (data) {
+                console.log(data);
+            })
+
+        </script>
+    </pre>
+</body>
+</html>

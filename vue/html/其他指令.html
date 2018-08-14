@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0,minimum-scale=1.0,maximum-scale=1.0">
+	<title></title>
+	<script src="../js/vue.js"></script>
+	<style type="text/css">
+		[v-cloak] {
+		  display: none;
+		}
+	</style>
+</head>
+<body>
+<section>
+	<h2>v-text：</h2>
+	<p>不编译字符串里的html</p>
+
+	<h2>v-html：</h2>
+	<p>编译字符串里的html</p>
+
+	<h2>v-pre：</h2>
+	<p>跳过vue的编译，直接输出原始值。</p>
+
+	<h2>v-cloak：</h2>
+	<p>在vue渲染完指定的整个DOM后才进行渲染。它必须和CSS样式一起使用。</p>
+	<p v-cloak>{{msg}}</p>
+
+	<div @click.self="dothat"><a href="http://www.baidu.com" @click.prevent="dothis">v-once：</a></div>
+	<p>在第一次DOM时进行渲染，渲染完成后视为静态内容，跳出以后的渲染过程。</p>
+	<p>跳出以后的渲染过程。跳出以后的渲染过程。跳出以后的渲染过程。跳出以后的渲染过程。
+		跳出以后的渲染过程。跳出以后的渲染过程。跳出以后的渲染过程。跳出以后的渲染过程。
+		跳出以后的渲染过程。跳出以后的渲染过程。跳出以后的渲染过程。跳出以后的渲染过程。
+		跳出以后的渲染过程。跳出以后的渲染过程。跳出以后的渲染过程。
+		跳出以后的渲染过程。跳出以后的渲染过程。跳出以后的渲染过程。跳出以后的渲染过程。
+		跳出以后的渲染过程。跳出以后的渲染过程。跳出以后的渲染过程。跳出以后的渲染过程。
+		跳出以后的渲染过程。跳出以后的渲染过程。跳出以后的渲染过程。跳出以后的渲染过程。
+		跳出以后的渲染过程。跳出以后的渲染过程。跳出以后的渲染过程。跳出以后的渲染过程。
+	</p>
+
+	<h1>{{msg}}</h1>
+	<form action="" @click.prevent>
+		<p><input type="submit" value="submit" /></p>
+	</form>
+	
+</section>
+<script>
+		var app = new Vue({
+			el : "section",
+			data :{
+					msg : "v-cloak的使用示例"
+				},
+			methods : {
+				dothat (){
+					alert('div');
+				},
+				dothis (){
+					alert('a');
+				}
+			}
+		});
+</script>
+</body>
+</html>

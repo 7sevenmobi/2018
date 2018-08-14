@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0,minimum-scale=1.0,maximum-scale=1.0">
+	<title></title>
+	<script src="../js/vue.js"></script>
+</head>
+<body>
+
+	<h2><a href="https://cn.vuejs.org/v2/guide/instance.html">官网生命周期钩子函数</a></h2>
+
+	<section id="s1">
+		<p>我不会被替换</p>
+		<slot></slot>
+	</section>
+
+	<p><img src="../img/lifecycle.png" alt="" width="500px"></p>
+
+	<!-- <script type="text/x-template" id="tempId">
+		<p>{{transInfo}}</p>
+	</script> -->
+
+	<!-- <template id="tempId">
+		<div>
+			<p>{{transInfo}}</p>
+		</div>		
+	</template> -->
+
+<script>
+	const vm = new Vue({
+		el : "#s1",
+		data : {
+			msg : "组件传值：这里是构造器传递过来的值",
+			att : "注意细节：属性名带有特殊字符'-'，使用小驼峰写法；template的引号格式；props是传参的"
+		},
+		template : `
+			<div>
+				<p>{{msg}}</p>
+				<p>{{att}}</p>
+			</div>
+		`,
+		methods : {
+			sayHi (){
+				return "sayHi func called";
+			}
+		},
+
+		//Vue构造器完成初始化 events 和 lifecycle 之后 
+		//[Vue warn]: Error in beforeCreate hook: "ReferenceError: sayHi is not defined"
+		beforeCreate : function (){console.log("beforeCreate hook--"+this.msg)},
+		
+		//完成 初始化数据选项对象 和 建立数据响应系统 之后
+		created : function (){console.log("created hook--"+this.sayHi())},
+
+		//vm.$el虚拟DOM替换 el 之前
+		beforeMount : function (){console.log("beforeMount hook--"+this.msg)},
+		
+		//vm.$el虚拟DOM替换 el 完成（渲染完成）
+		mounted : function (){console.log("mounted hook--"+this.msg)},
+
+		//渲染完成之后，当实例数据被修改，需要重新渲染之前
+		beforeUpdate : function (){console.log("beforeUpdate hook--")},
+		
+		//实例数据被修改，完成重新渲染 之后
+		updated : function (){console.log("update hook--")},
+
+		beforeDestroy : function (){console.log("beforeDestroy hook--")},
+
+		destroyed : function (){console.log("destroyed hook--")}
+	})
+</script>
+</body>
+</html>

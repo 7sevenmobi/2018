@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0,minimum-scale=1.0,maximum-scale=1.0">
+	<title></title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <style>
+        body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#app {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#app > div {
+  margin: 0 2rem;
+}
+
+:root {
+  --loadingRadius: 168px;
+  --dotRadius: 24px;
+  --dotColor: #d8d8d8;
+}
+
+.loading {
+  position: relative;
+  font-size: 0;
+  border-radius: 50%;
+  transform-origin: center;
+  width: var(--loadingRadius);
+  height: var(--loadingRadius);
+  color: var(--dotColor);
+}
+.loading div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 100%;
+  width: var(--dotRadius);
+  height: var(--dotRadius);
+  color: var(--dotColor);
+  margin-top: calc((var(--dotRadius) / 2) * -1);
+  margin-left: calc((var(--dotRadius) / 2) * -1);
+}
+.loading span {
+  display: block;
+  background-color: currentColor;
+  border: 0 solid currentColor;
+  border-radius: 100%;
+  animation: ball-spin 1s infinite ease-in-out;
+  width: var(--dotRadius);
+  height: var(--dotRadius);
+}
+
+@keyframes ball-spin {
+  0%,
+    100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0;
+    transform: scale(0);
+  }
+}
+.control-form {
+  margin: 10px 0;
+}
+
+.loading-demo {
+  min-width: 200px;
+}
+    </style>
+</head>
+<body>
+        <div id="app"><div class="loading-demo">    <loading :dot-color-val="dotColor" :dot-nums="dotNums" :loading-radius-val="loadingRadius" :dot-radius-val="dotRadius" :style="changeStyle"></loading>  </div>    <div class="control">    <div class="control-form">      <label for="dotNums">圆点个数:</label>      <input type="number" step="1" min="10" max="20" id="dotNums" v-model.number="dotNums"   />    </div>    <div class="control-form">      <label for="loadingRadius">容器半径:</label>      <input type="range" min="50" max="200" step="1" id="loadingRadius" v-model.number="loadingRadius"  />    </div>    <div class="control-form">      <label for="dotRadius">圆点半径:</label>      <input type="range" min="8" max="30" step="1" id="dotRadius" v-model.number="dotRadius"  />    </div>    <div class="control-form">      <label for="dotColor">圆点颜色:</label>      <input type="color" v-model="dotColor" id="dotColor"  />    </div>  </div></div><template id="loading">  <div class="loading">    <div v-for="(dotNum, index) in dotNums" :key="index" :style="dotTransform(index, dotNums)">      <span :style="dotAimation(index, dotNums)"></span>    </div>  </div></template>
+	<script>
+        Vue.component('loading', {
+            template: '#loading',
+            props: {
+                loadingRadiusVal: {
+                type: Number,
+                required: true,
+                default: 168
+                },
+                dotRadiusVal: {
+                type: Number,
+                required: true,
+                default: 24
+                },
+                dotColorVal: {
+                type: String,
+                required: true,
+                default: '#d8d8d8'
+                },
+                dotNums: {
+                type: Number,
+                required: true,
+                default: 10
+                }
+            },
+            methods: {
+                dotTransform: function dotTransform(index, dotNums) {
+                var rad = 2 * Math.PI / dotNums * index;
+                var dotX = Math.cos(rad) * this.loadingRadiusVal / 2;
+                var dotY = Math.sin(rad) * this.loadingRadiusVal / 2;
+                return {
+                    transform: 'translate(' + dotX + 'px,' + dotY + 'px)'
+                };
+                },
+                dotAimation: function dotAimation(index, dotNums) {
+                var delayTime = -1 * (1 + (index + 1) * 1 / dotNums) + 's';
+                return {
+                    animationDelay: delayTime
+                };
+                }
+            }
+        });
+
+        var app = new Vue({
+        el: '#app',
+        data: function data() {
+            return {
+            loadingRadius: 168,
+            dotRadius: 20,
+            dotColor: '#ff3366',
+            dotNums: 12
+            };
+        },
+        computed: {
+            changeStyle: function changeStyle() {
+            var rootEle = document.documentElement;
+            console.log(rootEle);
+            rootEle.style.setProperty('--loadingRadius', this.loadingRadius + 'px');
+            rootEle.style.setProperty('--dotRadius', this.dotRadius + 'px');
+            rootEle.style.setProperty('--dotColor', this.dotColor);
+            }
+        }
+        });
+            </script>
+</body>
+</html>

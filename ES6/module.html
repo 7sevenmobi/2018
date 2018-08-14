@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="" />
+    <script src=""></script>
+</head>
+<body>
+
+        <script type="module">
+
+            // 加载所有的非默认接口，并取一个别名math
+            // import * as math from './module_export';
+            
+            // 加载默认接口，不需要大括号
+            // import conFn from './module_export.js';
+
+            // 加载非默认接口，命名必须和模块提供的接口命名一致，需要大括号
+            // import {PI,circleR} from './module_export.js';
+
+            // 统一写法
+            import conFn,{PI,circleR} from './module_export.js';
+
+            console.log(PI);
+            conFn();
+        </script>
+ 
+</body>
+</html> 

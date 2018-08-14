@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="" />
+    <script src=""></script>
+</head>
+<body>
+    <pre style="font-size:1.5em;line-height:1.5em">
+        <a href="https://www.w3cschool.cn/html5/html5-geolocation.html">w3cschool</a>
+        HTML5 Geolocation：发送一个请求，用户同意之后，浏览器会返回用户的位置信息。
+
+        API：
+            1、getCurrentPosition：返回用户当前位置的经、维度等信息的一个对象coords，其属性如下：
+                1> coords.latitude：十进制的维度
+                2> coords.longitude：十进制的经度
+                3> coords.accuracy：位置精度
+                4> coords.altitude：海拔，海平面以上以米计
+                5> coords.altitudeAccuracy：位置的海拔精度
+                6> coords.heading：方向，从正北开始以度计
+                7> coords.speed：速度，以米/每秒计
+                8> timestamp：	响应的日期/时间
+            2、watchPosition：持续返回用户当前的位置信息（可追踪用户的运动情况），返回信息和getCurrentPosition相同
+            3、clearWatch：停止watchPosition
+    
+        实例：
+            <!-- <script> -->
+                let getPosition = function (){
+                    alert(3213);
+                    if(navigator.geolocation){
+                        navigator.geolocation.getCurrentPosition(showPosition,showError);
+                    }else{
+                        console.log('不支持geolocation功能');
+                    }
+                };
+
+                let showPosition = function (position){
+                    console.log('维度: '+ position.coords.latitude +'经度: '+position.coords.longitude);
+                };
+
+                let showError = function (error){
+                    switch(error.code){
+                        case error.TIMEOUT:
+                            console.log('请求超时');
+                        case error.UNKNOWN_ERROR:
+                            console.log('未知错误');
+                        case error.POSITION_UNAVAILABLE:
+                            console.log('位置信息是不可用的');
+                        case error.PERMISSION_DENIED:
+                            console.log('用户拒绝对获取地理位置的请求');
+                    }
+                };
+
+                document.querySelector('pre').addEventListener('click',getPosition,false);
+            <!-- </script> -->
+    </pre>
+</body>
+</html>

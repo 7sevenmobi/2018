@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0,minimum-scale=1.0,maximum-scale=1.0">
+	<title></title>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+
+	<p v-change-c="color">{{message}}</p>
+	<a href="https://cn.vuejs.org/v2/guide/custom-directive.html#ad">官网自定义指令详解</a>
+	<script>
+
+		Vue.directive("changeC",{
+			bind : function (el,binding,vnode){
+				el.style.color = binding.value;
+			},
+			inserted : function (){},
+			update : function (){},
+			componentUpdated : function (){},
+			unbind : function (){}
+		})
+
+		new Vue({
+			el : "p",
+			data : {
+				message : "自定义指令的钩子：bind, inserted, update, componentUpdated, unbind，以及钩子参数el, binding, vnode,oldVnode。",
+				color : "red"
+			}
+		})
+
+	</script>
+</body>
+</html>

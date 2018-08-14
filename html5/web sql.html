@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="" />
+    <script src=""></script>
+</head>
+<body>
+    <pre style="font-size:1.5em;line-height:1.5em">
+        <a href="https://www.w3cschool.cn/html5/html5-web-sql.html">w3cschool</a>
+        1、openDatabase：这个方法使用现有的数据库或者新建的数据库创建一个数据库对象。
+        2、transaction：这个方法让我们能够控制一个事务，以及基于这种情况执行提交或者回滚。
+        3、executeSql：这个方法用于执行实际的 SQL 查询。
+
+        let db = openDatabase('mydb','1.0','testdb',2*1024*1024);
+        openDatabase方法对应的五个参数说明：
+            1、数据库名称
+            2、版本号
+            3、描述文本
+            4、数据库大小
+            5、创建回调，回调会在创建数据库后被调用。
+
+        实例：
+            var db = openDatabase('mydb', '1.0', 'Test DB', 2 * 1024 * 1024);
+            db.transaction(function (tx) {  
+            tx.executeSql('CREATE TABLE IF NOT EXISTS LOGS (id unique, log)');
+            tx.executeSql('INSERT INTO LOGS 
+                                    (id,log) VALUES (?, ?'), [e_id, e_log];
+            });
+            实例中的 e_id 和 e_log 是JS变量，executeSql 会映射数组参数中的每个条目给 "?"。
+    </pre>
+</body>
+</html>

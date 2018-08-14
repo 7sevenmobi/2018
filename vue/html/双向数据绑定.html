@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0,minimum-scale=1.0,maximum-scale=1.0">
+	<title></title>
+	<script src="../js/vue.js"></script>
+</head>
+<body>
+	<h1>双向数据绑定v-model</h1><hr>
+<!--	<section>	标签从这里开始，{{inputText}}将会报错	-->
+
+<!--	将inputText脱离父元素section，是为了使其数据不被model的其他v-model同名的子元素所污染	-->
+<div class="m">
+		<p>您输入的内容是：{{inputText}}</p>
+		<p>v-model：<input type="text" name="" value="" v-model="inputText"></p>
+</div>
+<hr>
+	<form>
+		<p>您输入的内容是：{{inputText22}}</p>
+		<p>v-model.lazy懒加载：<input type="text" name="" value="" v-model.lazy="inputText22"></p>
+		<p>v-model.number只接受数值类型（混乱输入的时候有问题）：<input type="text" name="" value="" v-model.number="inputText22"></p>
+		<p>v-model.trim去首尾空格（防止恶意输入）：<input type="text" name="" value="" v-model.trim="inputText22"></p>
+		<hr>
+
+		<p>您输入的内容是：{{textArea}}</p>
+		<textarea cols="30" rows="10" v-model="textArea"></textarea>
+		<hr>
+
+		<p>您选择的是：{{fruits.join("，")}}</p>
+		<label for="apple">apple</label>
+		<input type="checkbox" name="" value="apple111" id="apple" v-model="fruits">
+		<label for="orange">orange</label>
+		<input type="checkbox" name="" value="orange" id="orange" v-model="fruits">
+		<label for="banana">banana</label>
+		<input type="checkbox" name="" value="banana" id="banana" v-model="fruits">
+		<label for="watermelon">watermelon</label>
+		<input type="checkbox" name="" value="watermelon" id="watermelon" v-model="fruits">
+		<hr>
+
+		<p>您选择的是：{{sex}}</p>
+		<label for="man">男：</label>
+		<input type="radio" name="" value="man" id="man" v-model="sex">
+		<label for="women">女：</label>
+		<input type="radio" name="" value="women" id="women" v-model="sex">
+		<label for="dontk">你猜：</label>
+		<input type="radio" name="" value="dontk" id="dontk" v-model="sex">
+		<input type="button" name="" @click="showInfo" value="提交">
+	</form>
+
+
+<script>
+
+	new Vue({
+		el : ".m",
+		data : {
+			//只有一个输入值
+			inputText : ""
+		}
+	})
+
+	new Vue({
+		el : "form",
+		data : {
+			//只有一个输入值
+			inputText22 : "",
+			textArea : "",
+			//多个输入值
+			fruits : [],
+			sex : ""
+		},
+		methods : {
+			showInfo : function (){
+				alert(this.sex);
+			}
+		}
+	})
+
+</script>
+</body>
+</html>

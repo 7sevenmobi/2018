@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+<meta charset="utf-8" />
+<title>animation_CSS参考手册_web前端开发参考手册系列</title>
+<meta name="author" content="Joy Du(飘零雾雨), dooyoe@gmail.com, www.doyoe.com" />
+<style>
+section{line-height:1.5em;margin:1.5em;}
+
+div{position:absolute;top:40%;right:1%;overflow:hidden;width:470px;height:300px;margin:-75px 0 0 -150px;border:3px solid #eee;background:#e0e0e0;}
+span{display:block;height:50px;font:30px/50px Georgia;}
+
+.a1{
+	color:red;
+	-webkit-transform:translate(160px);
+	-moz-transform:translate(160px);
+	transform:translate(160px);
+	-webkit-animation:a1animations 2s ease-out 3s forwards;
+	-moz-animation:a1animations 2s ease-out 3s forwards;
+	animation:a1animations 2s ease-out 3s forwards;
+}
+@keyframes a1animations{
+	0%{transform:translate(0);color:green;}
+	50%{transform:translate(30px);color:#aa0;}
+	70%{transform:translate(35px);color:#dd0;}
+	100%{transform:translate(60px);color:blue;}
+}
+
+.a2{
+	color:red;
+	font-size:20px;
+	text-decoration:underline;
+	-webkit-transform:translate(160px);
+	-moz-transform:translate(160px);
+	transform:translate(160px);
+	-webkit-animation:a2anim 2s ease-out 3s backwards;
+	-moz-animation:a2anim 2s ease-out 3s backwards;
+	animation:a2anim 2s ease-out 3s backwards;
+}
+@keyframes a2anim{
+	0%{transform:translate(0);color:green;font-size:6px;}
+	50%{transform:translate(30px);color:#aa0;}
+	70%{transform:translate(35px);color:#dd0;}
+	100%{transform:translate(60px);color:blue;}
+}
+@-webkit-keyframes a2anim{
+	0%{-webkit-transform:translate(0);color:green;}
+	50%{-webkit-transform:translate(30px);color:#aa0;}
+	70%{-webkit-transform:translate(35px);color:#dd0;}
+	100%{-webkit-transform:translate(60px);color:blue;}
+}
+@-moz-keyframes a2anim{
+	0%{-moz-transform:translate(0);color:green;}
+	50%{-moz-transform:translate(30px);color:#aa0;}
+	70%{-moz-transform:translate(35px);color:#dd0;}
+	100%{-moz-transform:translate(60px);color:blue;}
+}
+
+</style>
+</head>
+<body>
+	<section>forwards：定义动画完成之后的元素样式（100%帧节点之后的样式）。如果定义了100%帧节点的样式，就使用100%帧节点的样式（没有定义的属性使用继承或默认值）；如果没有定义100%帧节点的样式，就使用自定义或继承或默认的样式</section>
+	<section>backwards：定义动画开始之前的元素样式（0%帧节点之前即delay时间段的样式）。如果定义了0%帧节点的样式，就使用0%帧节点的样式（没有定义的属性使用继承或默认值）；如果没有定义0%帧节点的样式，就使用自定义或继承或默认的样式</section>
+	<h3><a href="https://www.w3cplus.com/css3/css-animation-fill-mode-property.html">w3cplus：animation的详细介绍</a></h3>
+	<section><img src="../images/animation.png"></section>
+	<div>
+		<span class="a1">animation-fill-mode:forwards</span>
+		<span class="a2">animation-fill-mode:backwards</span>
+	</div>
+</body>
+</html>
+			

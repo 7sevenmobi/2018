@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+	<pre>
+		Array.isArray()：数组检测
+
+		length属性：数组长度
+
+		会对原数组进行修改的：
+			1、push
+			2、pop
+			3、shift
+			4、unshift
+			5、sort
+			6、reverse
+			7、splice
+
+		不会对原数组进行修改的：
+			0、concat
+			1、join
+			2、slice
+			3、every
+			4、some
+			5、filter
+			6、map
+			7、forEach
+			8、reduce
+			9、reduceRight
+			10、toString
+			11、valueOf
+
+	</pre>
+		<script>
+			
+			let arr = ['aaa','bbb','ccc'];
+			let arrs = arr.toString();
+			//string
+			alert(typeof arrs);
+			//true
+			alert(Array.isArray(arr));
+
+		/***
+			var arr1 = ['arr1','1'];
+			var m = arr1;
+
+			m.push('hi');
+
+			//output: ['arr1','1','hi']
+			console.log(arr1);
+		***/
+		
+			/*** 
+			 ***	filer
+			 ***
+			var arr = [1,2,3,4,5,6,7,8,9];
+			var resultArr;
+
+			resultArr = arr.filter(function(item,index,array){
+				return item % 2 == 0;
+			});
+
+			console.log(resultArr);
+			***/
+
+
+			/*** 
+			 ***	map
+			 ***
+			var arr = [1,2,3,4,5,6,7,8,9];
+			var resultArr;
+
+			resultArr = arr.map(function(item,index,array){
+				return item * 2;
+			});
+
+			//output: [2,4,6,8,10,12,14,16,18]
+			console.log(resultArr);
+			***/
+
+
+
+
+		</script>
+</body>
+</html>

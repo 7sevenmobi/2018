@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf8">
+	<title></title>
+	<style>
+		section,section img{margin:30px;line-height:1.5em;}
+
+		div{width:250px;height:100px;}
+		 
+		.wrapper{
+			float:right;
+			margin:80px 80px 80px 10px;
+			-webkit-perspective:800px;
+			/**************************************************
+			***************************************************
+			-webkit-transform-style:preserve-3d;	因为此元素的子元素也使用了transform，因此，使用在这里会导致其后代元素无法transform
+			***************************************************
+			**************************************************/
+			border: 1px solid black;
+		}
+		.container{
+			-webkit-transform-style:preserve-3d;
+			-webkit-transform:rotateY(50deg);
+			background: rgba(0,255,0,0.7);
+		}
+		.content{
+			-webkit-transform-origin: top left;
+			-webkit-transform:rotateX(45deg);
+			background: rgba(255,0,0,0.7);
+		 
+		}
+	</style>
+</head>
+<body>
+<section>transform-origin属性：默认值50% 50%；表示以距离 位置原点（自称的） 横坐标50%，纵坐标50%的点 为 变换原点 进行转换。</section>
+<section>transform-style属性：默认值flat，表示以何种空间方式呈现后代元素（注意点：见样式里的注释）。flat：2维平面方式显示；preserve-3d：3D空间显示。因此，此属性一般应用在变换元素的共同祖先元素</section>
+<section>perspective视距属性（默认值：none）、perspective-origin视点坐标属性（默认值：50% 50%）。这两个属性一般应用于变换元素的共同祖先元素（舞台对象）</section>
+<h3><a href="https://www.zhangxinxu.com/wordpress/2012/09/css3-3d-transform-perspective-animate-transition/">张鑫旭：详细剖析transform 3D变换</a></h3>
+<section>
+	<span><img src="../images/transform-origin.png"><img src="../images/3d-axes.png"></span>
+	<div class="wrapper">
+	    <div class="container">
+	        <div class="content"></div>
+	    </div>
+	</div>
+</section>
+</body>
+</html>

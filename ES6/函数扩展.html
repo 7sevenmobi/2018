@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="../CSS/monokai theme.css" />
+    <script src=""></script>
+</head>
+<body>
+    <pre class="language-javascript">
+        <code class="language-javascript">
+            函数扩展：
+
+                1、参数默认值：如果设置一个参数的默认值，会默认声明这个变量
+                    <pre>
+                        // var sortNumber = function (){
+                        //     // 报错
+                        //     //console.log(arguments.sort());
+                            
+                        //     //ES5
+                        //     //console.log(Array.prototype.slice.call(arguments).sort());
+                        // };
+                        //ES6 
+                        // let sortNumber = function (...numbers){
+                        //     console.log(numbers.sort())
+                        // };
+                            // let sortNumber = (m=0,...numbers)=>{
+                            //     //报错 必须在参数环境里声明
+                            //     //console.log(...numbers.sort());
+                            //     //  2
+                            //     //console.log(numbers[0]);
+                            //     // 不对第一个传入的参数 2 进行排序，因为...numbers表示除了m之外的参数组成的数组，numbers是变量名
+                            //     console.log(...numbers.sort());
+                            // };
+                            // sortNumber(2,34,6,3,24,1);
+// <!-- 
+//                         let i = 2;
+//                         let foo = function (p=i+1){
+//                             console.log(p*10);
+//                         };
+//                         // 30 
+//                         foo();
+
+
+//                         let fn1 = function (x=1,y=0+i){
+//                             return Math.pow(x,y);
+//                         };
+
+//                         let fn2 = function (x=1,y=1){
+//                             return Math.hypot(x,y);
+//                         };
+//                         //4  5
+//                         console.log(fn1(2),fn2(3,4)); -->
+
+
+                            //箭头函数嵌套
+                            const pipeline = (...funcs) =>
+                                val => funcs.reduce((a, b) => b(a), val);
+
+                            const plus1 = a => a + 1;
+                            const mult2 = a => a * 2;
+                            const addThenMult = pipeline(plus1, mult2);
+                            
+                            console.log(addThenMult(5))
+                    </pre>
+        </code>
+    </pre>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		body{background-color:#eee;}
+		.head{float:left;width:40%;height:400px;background-color:#999;}		/* overflow:hidden; */
+		.nav{float:left;width:33%;height:350px;background-color:#666;}
+		.body{float:left;width:30%;height:300px;background-color:#333;}
+
+		/*.clear:after{content:'';height:0;visibility:hidden;display:block;clear:both;}*/
+		.clear:after{content:'';display:table;clear:both;}
+
+	</style>
+</head>
+<body>
+	<div style="background-color:#aaa;" class="clear">
+		<div style="margin:30px auto;">float:left|right、position:absolute|fixed，都会使元素脱离文档流</div>
+		<div class="head">head</div>
+		<div class="nav">nav</div>
+		<div class="body">body</div>
+	</div>
+	<div style="background-color:red;">fdsafdasfewafewafewafew</div>
+</body>
+</html>

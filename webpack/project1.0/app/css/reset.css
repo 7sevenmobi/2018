@@ -1,0 +1,7 @@
+
+*::selection{color:#f40;}
+
+html{font-size:10px;}
+body{margin:0;box-sizing:border-box;font-size:1.6em;background-color:#fff;color:#000;}
+
+.clear:after{content:"";display:table;clear:both;}

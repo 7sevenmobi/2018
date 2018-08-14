@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>闭包实例讲解</title>
+</head>
+<body>
+	<p id="helpInfo">your help information will appear here</p>
+	<form>
+		<p>tellphone: <input id="tellphone" type="text" name="tellphone"></p>
+		<p>email: <input id="email" type="" name="email"></p>
+		<p>name: <input id="name" type="" name="name"></p>
+	</form>
+
+	<script>
+		
+		var helpInfoArr = [
+			{'id':'tellphone','info':'your tellphone number'},
+			{'id':'email','info':'your email'},
+			{'id':'name','info':'your name'}
+		];
+
+		var showInfo = function (helpInfo){
+			document.getElementById("helpInfo").innerHTML = helpInfo;
+		};
+
+		/***
+		****	循环的时候虽然给每一个item绑定了事件，形成了3个闭包，
+		****	但是事件回调函数只有在事件触发的时候才会调用，并且，3个闭包的词法作用域相同
+		****	当循环执行完毕，item已经决定了（指向数组最后一项），
+		****	因此，当3个元素的事件触发 执行回调函数的时候，3个元素的回调函数showInfo的参数值都是 数组最后一项
+		****
+		****	解决方法：
+		****				利用闭包，将每次循环的 i 或者 item 值 都保存起来，与事件回调函数相关联
+		****
+		****
+			for(var i=0; i<helpInfoArr.length;i++){
+				function(){
+					var item = helpInfoArr[i];
+
+					document.getElementById(item.id).onfocus = function(){
+							showInfo(item.info);
+					};
+				}
+			}
+		***/
+
+		for(var i=0; i<helpInfoArr.length;i++){
+			(function(){
+				var item = helpInfoArr[i];
+
+				document.getElementById(item.id).onfocus = function(){
+						showInfo(item.info);
+				};
+			})()
+		}
+
+	</script>
+
+
+
+
+</body>
+</html>

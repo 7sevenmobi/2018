@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0,minimum-scale=1.0,maximum-scale=1.0">
+	<title></title>
+	<script src="../js/vue.js"></script>
+</head>
+<body>
+<main>
+	<article>您的年龄是：{{message}}</article>
+	<input type="button" name="" id="" value="45岁以上" @click="oldman">
+	<input type="button" name="" id="" value="45岁以下" @click="youngman">
+</main>
+<script>
+
+	const ageInfo = ["年轻人","老年人"];
+
+	const app = new Vue({
+		el : "main",
+		data : {
+			age : 45,
+			message : ""
+		},
+		methods : {
+			oldman : function (){
+				this.age++;
+			},
+			youngman : function (){
+				this.age--;
+			}
+		}
+	})
+
+	app.$watch("age",function (newVal,oldVal){
+		
+			console.log(newVal);
+
+			if(newVal==45 || newVal>45){
+				this.message = ageInfo[1]
+			}else if(newVal>0 && newVal<45){
+				this.message = ageInfo[0]
+			}
+	});
+
+</script>
+</body>
+</html>

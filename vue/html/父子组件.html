@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0,minimum-scale=1.0,maximum-scale=1.0">
+	<title></title>
+	<script src="../js/vue.js"></script>
+</head>
+<body>
+
+	<section id="s1">
+		<seven2></seven2>
+	</section>
+
+<script>
+
+	const componentA = {
+		template : `<a href="">there is a </a>`
+	};
+
+	const componentB = {
+		template : `<p>
+		there is p
+		<componentA></componentA>
+		</p>`,
+		components : {
+			"componentA" : componentA
+		}
+	};
+
+	const componentC = {
+		template : `<div>
+		there is div
+		<componentB></componentB>
+		</div>`,
+		components : {
+			"componentB" : componentB
+		}
+	};
+
+	new Vue({
+		el : "#s1",
+		data : {},
+		methods : {},
+		components : {
+			"seven2" : componentC
+		}
+	})
+</script>
+</body>
+</html>

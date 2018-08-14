@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="" />
+    <script src=""></script>
+</head>
+<body>
+    <div style="float:right;">
+        <img src="../img/组件树.jpg"/>
+        <img src="../img/父子组件通讯.jpg"/>
+    </div>
+    <pre style="float:left;font-size:1.5em;line-height:1.5em;">
+        组件问题合集：
+            1、根实例中的大部分属性选项，都可以在组件中使用，有什么区别？
+                答：各自的属性选项互不影响，而且，从父子组件关系（数据传输）出发点考虑，是很有必要的。
+            2、根实例是最高级的父组件
+            3、出于安全考虑，父组件向子组件传递数据时，在子组件中使用props声明期待获取的值，
+               子组件向父组件传递消息使用$event、$emit
+            4、<a href="https://cn.vuejs.org/v2/guide/computed.html">computed、methods方法、watch监听器的区别</a>
+            5、组件之间如何通讯？
+        </pre>
+</body>
+</html>

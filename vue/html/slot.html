@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0,minimum-scale=1.0,maximum-scale=1.0">
+	<title></title>
+	<script src="../js/vue.js"></script>
+</head>
+<body>
+<div id="sitmap">
+	<!-- 第一步：接收构造器的数据 -->
+	<sevencomp>
+		<a :href="site" slot="s">{{site}}</a>
+		<span slot="sr">{{siter}}</span>
+		<span slot="i">{{intro}}</span>
+	</sevencomp>
+</div>
+	<!-- 第二步：读取输出数据（注意：必须要有一个根元素，也就是示例中的空div） -->
+	<template id="seventemp">
+		<div>
+			<p>网站：<slot name="s">这里是默认值</slot></p>
+			<p>站主：<slot name="sr"></slot></p>
+			<p>介绍：<slot name="i"></slot></p>
+		</div>
+	</template>
+
+<script>
+	const info = {
+		"site" : "http://www.baidu.com",
+		"siter" : "7seven",
+		"intro" : "better man"
+	};
+
+	const app = new Vue({
+		el : "#sitmap",
+		data (){
+			return info;
+		},
+		components : {
+			"sevencomp" : {
+				template : "#seventemp"
+			}
+		}
+	});
+</script>
+</body>
+</html>

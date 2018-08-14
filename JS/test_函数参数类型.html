@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>函数参数的传递方式</title>
+</head>
+<body>
+	<h1>函数的参数都是按  <span style="color:red">值传递</span></h1>
+	<h2>当实参是引用类型时，可以理解为：形参 接收到的是 指针复制值，因为是 值 传递，所以函数体并不能对实参做出任何改变</h2>
+		<script>
+			
+				var obj1 = {'name': 'obj1'};
+				var obj2 = {'name': 'obj2'};
+
+				var m = obj1;
+				var n = obj1;
+
+				var k=function(i){
+					i = obj2;
+				};
+
+				k(n);
+				
+
+				//output:	{name: "obj1"}
+				console.log(n);
+
+
+		</script>
+</body>
+</html>

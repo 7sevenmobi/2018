@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="" />
+    <script src=""></script>
+</head>
+<body>
+    <pre style="font-size:1.5em;line-height:1.5em">
+        <a href="https://www.w3cschool.cn/html5/html5-webstorage.html">w3cschool</a>
+            
+        HTML5 有两种存储方式：
+        
+            1、localStorage：客户端本地存储。除非客户删除存储文件，否则永久存储
+            2、sessionStorage：会话存储。会话结束，数据清除
+    
+            API：（两种方式都一样，以localStorage为例）
+                1、localStorage.setItem(key,val)：保存数据
+                2、localStorage.getItem(key)：获取数据
+                3、localStorage.removeItem(key)：删除数据
+                4、localStorage.clear()：删除所有数据数据
+                5、localStorage.key(index)：获取index索引的key
+    </pre>
+    <!-- <script> -->
+        if(typeof Storage !== 'undefined'){
+            //两种写法都一样
+            localStorage.setItem('name','7sevenmobi');
+            localStorage.age = 22;
+            console.log('哈哈，数据已被存储，去这里找C:\Users\Administrator\AppData\Local\Google\Chrome\User Data\Default\Local Storage\leveldb');
+        }
+    <!-- </script> -->
+</body>
+</html>

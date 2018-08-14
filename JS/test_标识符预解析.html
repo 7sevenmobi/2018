@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>标识符预解析</title>
+</head>
+<body>
+		<h3>函数执行时的 词法作用域（execution context）（也称为执行环境） 是在标识符预解析（也就是变量声明）的时候建立保存下来的，并不是在调用的时候</h3>
+		<script>
+			
+		/***
+
+			var name = 'global';
+
+			function sayName(){
+				function j(){
+					console.log(name);
+				};
+
+				j();
+
+				var name = 'k';
+			}
+
+			//output: undefined
+			sayName();
+
+		***/
+
+
+		/***
+			var name = 'global';
+
+			function sayName(){
+				console.log(name);
+			}
+			
+			function k(){
+				var name = 'k';
+				sayName();
+			}
+
+			//output: global
+			//如果函数执行时，搜索变量是在调用时的环境中搜索，那么应该output ： k （见上段代码）
+			k();	
+
+		***/	
+		
+
+
+		</script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="" />
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <h2>以下的组件，为什么data和methods写在component中会报错。</h2>
+    <h3>如果每个按钮只操作其对应的li，应该怎么做？？？</h3>
+    <ul>
+        <li 
+            is="compa"
+            v-for="iteminfo of info"
+            :key="iteminfo.id"
+            :iteminfo="iteminfo"
+            @addfontsize="onaddfontsize"
+            :style="{fontSize:fontsize+'em'}"
+            ></li> 
+    </ul>
+
+    <script>
+
+        let infoArr = [
+            {id : 0, title : "大哈", content : "大哈是个大傻帽"},
+            {id : 1, title : "二哈", content : "二大哈是个大傻帽"},
+            {id : 2, title : "三哈", content : "三哈是个大傻帽"}
+        ];
+
+        Vue.component("compa",{
+            // data (){
+            //     return {
+            //         fontsize : 1
+            //     }
+            // },
+            props : ["iteminfo"],
+            template : `
+            <li>
+                <input type="button" value="增加字号" @click="$emit('addfontsize',0.1)" />
+                <p >{{iteminfo.title}} : {{iteminfo.content}}</p>
+            </li>
+            `
+            // methods : {
+            //     onaddfontsize : function (val){
+            //         this.fontsize += val
+            //     }
+            // }
+        });
+
+        new Vue({
+            el : "ul",
+            data : {
+                info : infoArr,
+                fontsize : 1
+            },
+            methods : {
+                onaddfontsize : function (val){
+                    this.fontsize += val;
+                }
+            }
+        });
+
+
+    </script>
+</body>
+</html>

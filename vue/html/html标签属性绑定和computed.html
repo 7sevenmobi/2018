@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0,minimum-scale=1.0,maximum-scale=1.0">
+	<title></title>
+	<script src="../js/vue.js"></script>
+</head>
+<body>
+<div id='test'>
+	<h2>v-bind是动态绑定特性的，例如 img 是一个标签，:src进行动态赋值，:myprivate-pro通过props给子组件传值。</h2>
+	<hr>
+	<h2 :style="'backgroundColor:'+addbackgroundcolor">计算属性(computed)是基于它们的依赖进行缓存的。计算属性只有在它的相关依赖发生改变时才会重新求值。这就意味着只要 message 还没有发生改变，多次访问 addbackgroundcolor 计算属性会立即返回之前的计算结果，而不必再次执行函数。</h2>
+	<h3><a href="https://cn.vuejs.org/v2/guide/computed.html">computed、methods方法、watch监听器的区别</a></h3>
+	<hr>
+
+	<div v-bind:style="{color:'red'}">绑定style样式</div>
+	<div :style="styleP">用对象绑定style样式</div>
+</div>
+<script>
+
+var app=new Vue({
+   el:'#test',
+   data:{
+    	styleP : {
+    		color : "#f40",
+    		fontSize : "1.5em",
+    		backgroundColor : "silver"
+    	}
+    },
+    computed : {
+    	addbackgroundcolor : function (){
+    		return this.backgroundColor = "rgba(255,100,0,0.7)"
+    	}
+    }
+})
+
+</script>
+</body>
+</html>

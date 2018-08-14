@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="" />
+    <script src=""></script>
+</head>
+<body>
+<pre>
+    
+        // let msg = 'fd435a_sa432fds4343a324';
+
+        // //如果没有组匹配，那么每次匹配成功就返回，不再继续匹配
+        // //而且下一次开始匹配的索引位置，是上一次匹配成功的位置
+    
+        // let pattern = /[a-z]+\d+[a-z]?/ig;
+
+        // "fd435a"
+        // let arr = pattern.exec(msg);
+        // "sa432f"
+        // let arr2 = pattern.exec(msg);
+        // "ds4343a"
+        // let arr3 = pattern.exec(msg);
+
+        // console.log(arr);
+        // console.log(arr2);
+        // console.log(arr3);
+
+
+
+        //注意这里多了一个 y 修饰符
+        // let pattern = /[a-z]+\d+[a-z]?/iy;
+
+        //如果没有组匹配，那么每次匹配成功就返回，不再继续匹配
+        //而且下一次开始匹配的索引位置，是上一次匹配成功 剩余的第一个 位置
+        //  0 : "fd435a"
+        // let arr = pattern.exec(msg);
+        //null
+        // let arr2 = pattern.exec(msg);
+
+        // console.log(arr);
+        // console.log(arr2);
+
+
+
+    let msg = '2018-7-23';
+       //具名组匹配'(?<variable name>)'，为每一个组匹配指定一个名字
+    let RE = /(?<year>\d+)-(?<month>\d+)-(?<day>\d+)/guis;
+
+    let nmsg = msg.replace(RE,(...args
+    //     matched,    //整个匹配结果 
+    //     capture1,   //第一个组匹配
+    //     capture2,   //第二个组匹配
+    //     capture3,   //第三个组匹配
+    //     position,   //匹配开始的位置
+    //     S,          //msg的值
+    //     groups      //具名组构成的一个对象{year, month, day}
+    )=>{
+        //解析赋值
+        let {day,month,year} = args[args.length-1];
+        //字符串模板，使用变量${...}
+        return `${day}/${month}/${year}`;
+    });
+    // 23/7/2018
+    console.log(nmsg);
+</pre>
+</body>
+</html>

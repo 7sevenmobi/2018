@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0,minimum-scale=1.0,maximum-scale=1.0">
+	<title></title>
+	<script src="../js/vue.js"></script>
+</head>
+<body>
+<input type="button" name="" value="reduce" onclick="reduce()">
+<div id='test'>
+    <p>{{num}}</p>
+    <input type="button" name="" value="add" @click="addNum">
+    <hr>
+    <pre>对于已经创建的实例，Vue 不能动态添加根级别的响应式属性。但是，可以使用以下方法向嵌套对象添加响应式属性。
+        1、    Vue.set(object, key, value)或
+        2、    vm.$set(object, key, value)或
+        3、    vm.userProfile = Object.assign({}, seven.info, {
+                age: 27,
+                favoriteColor: 'Vue Green'
+            })
+    </pre>
+    <p>{{info.age}}</p>
+    <input type="text" name="" placeholder="请输入..." v-model="info.age">    
+</div>
+<script>
+
+const seven=new Vue({
+   el:'#test',
+   data:{
+        num : 0,
+        info : {
+            name : "7seven"
+        }
+    },
+    methods : {
+        addNum : function (){
+            this.num++;
+        }
+    }
+});
+//添加响应式属性
+Vue.set(seven.info,"age",27);
+
+//非响应式属性，插值无法读取
+//seven.info.age = 27;
+
+//添加方法
+seven.$on("reduce",function (){
+    this.num--;
+});
+
+//外部调用(触发)
+function reduce(){
+    seven.$emit("reduce");
+}
+
+</script>
+</body>
+</html>
