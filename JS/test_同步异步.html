@@ -13,12 +13,12 @@
 </head>
 <body>
 		<h3>
-			<a href="http://www.ruanyifeng.com/blog/2014/10/event-loop.html">阮一峰：同步和异步</a>
+			<a href="http://www.ruanyifeng.com/blog/2014/10/event-loop.html">阮一峰：同步（阻塞）和异步（非阻塞）</a>
 			<a href="http://www.ruanyifeng.com/blog/2012/12/asynchronous%EF%BC%BFjavascript.html">阮一峰：异步编程的4种方法</a>
 		</h3>
 		<p>
 			<img src="../images/Event Loop.png" alt="" style="float:left;">
-			<span>上图中，主线程运行的时候，产生堆（heap）和栈（stack），栈中的代码调用各种外部API，它们在"任务队列"中加入各种事件（click，load，done）。只要栈中的代码执行完毕，主线程就会去读取"任务队列"，依次执行那些事件所对应的回调函数。</span>
+			<span>上图中，主线程运行的时候，产生堆（heap）和栈（stack），栈中的代码调用各种外部API，它们在"任务队列"中加入各种事件（click，load，done）。只要栈中的代码执行完毕，主线程就会去读取"任务队列"。如果此时有事件被触发，就会执行此事件所对应的回调函数，如果没有事件被触发，就会返回到执行栈继续执行。</span>
 		</p>
 		<pre style="line-height:1.4em;font-size:1.4em;">
 Event Loop：
