@@ -10,7 +10,7 @@ const serv = http.createServer(function (req,res){
     // res.writeHead('301',{'location':'http://www.tmall.com'});
 
     res.writeHead(200,{'Content-Type':'text/html'});
-
+    
     res.end(info);
 }).listen(8080,'localhost');
 
