@@ -1,0 +1,5 @@
+node
+
+    1. nodemon: 修改文件自动重启本地服务器
+
+        全局安装，修改package.json配置
