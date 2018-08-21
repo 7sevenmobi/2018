@@ -51,6 +51,8 @@
 
 	格式：echo 文本内容 >>a.js 
 
+14. chcp [codepage]		通过字体在系统中的代码页，增加命令行可选字体
 
+	chcp 936	引入Consolas字体
 
 
