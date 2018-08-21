@@ -40,8 +40,8 @@ const config = {
 	plugins: [
 		new webpack.DedinePlugin({
 			'process.env': {
-				NODEENV: isDev ? '"development":"production"'
-			}
+                NODEENV: isDev ? '"development":"production"'
+            }
 		}),
 		new HTMLplugin()
 	]
