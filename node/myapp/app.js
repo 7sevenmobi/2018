@@ -3,40 +3,13 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-const mongoose = require('mongoose');
 
 // require modules
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
-// connect database
-let url = 'mongodb://localhost:27017';
-let Schema = mongoose.Schema;
-let ObjectId = Schema.ObjectId;
-
-// 定义数据结构
-let schema = new Schema({
-  title: 'string',
-  task: String,
-  id: 'number',
-  fork: 'number',
-  comments: String,
-  hide: Boolean
-});
-let Task = mongoose.model('Task',schema);
-
-mongoose.connect(url);
-
-// 数据库操作
-Task.create({title: 'test1',fork: 12},{comments: 'comfjdklasfda',fork: 33232});
-Task.find(function(err,docs){
-  console.log(docs);
-});
-
-
 // Application
 var app = express();
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

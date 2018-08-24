@@ -2,8 +2,9 @@ html
     head
         title
         link(rel="stylesheet", href="")
+        //- link(rel="stylesheet", href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm", crossorigin="anonymous")
     body
-        form(action='/' method='post')
+        form(action='/users' method='post')
             fieldset
                 legend Add a user
                 p
@@ -14,3 +15,4 @@ html
                     input(type="text",name='email')
                 p
                     input(type='submit',value='submit')
+                    input(type='reset',value='reset')

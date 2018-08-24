@@ -90,6 +90,8 @@
                 Task.update({name:/a/},{age: 10},{multi:true}).exec();
 
         // updateMany
+                update方法的升级版，multi默认为true
+
         // find + save
         // updateOne
         // findOne + save
@@ -97,6 +99,11 @@
         // fingOneAndUpdate
 
     2.4 删除，有以下几种方法：
-        // remove
+        // remove 有以下两种形式：
+                1. 删除模型: Model.remove(conditions,callback)
+                        例如：删除所有name属性中包含'a'字符的记录
+                            Task.remove({name:/a/}).exec()
+                2. 删除文档: doc.remove([callback])
+
         // findOneAndRemove
         // findByIdAndRemove
