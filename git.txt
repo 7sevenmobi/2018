@@ -1,4 +1,9 @@
 
+
+git add是把文件修改添加到暂存区（不会对HEAD指针有影响）；
+git commit是把暂存区的所有内容提交到当前分支。
+
+
 1. git rm --cache fileName / git rm -r --cache . (删除所有)
         删除缓存区或分支中的对应文件，工作区保留但是不会被追踪（常见应用于配置.gitignore）
 
@@ -9,11 +14,12 @@
         查看对HEAD指针的操作历史
 
 4. git reset HEAD e392d71(这个值是每一次对HEAD操作过后的版本指针)
-        利用reflog命令返回的数据，设置HEAD指针值，将工作区中所有文件回退到指定状态
-        快捷操作：git reset --hard HEAD^  回退到上一个版本
+        利用reflog命令返回的数据，设置HEAD指针值，将工作区中已经commit的所有文件回退到指定状态
+        快捷操作：git reset --hard HEAD   回退到上一次commit之后版本(已经add但是没有commit也会回退，因为add命令并不会改变HEAD指针)
+                 git reset --hard HEAD^  回退到上一个版本
                  git reset --hard HEAD^^ 回退到上上个版本
 
 4. git checkout -- git.txt
-        将单个文件回退到上一次在工作区的状态(如果已经add或者commit，则需要配合reset)
+        将单个文件回退到上一次在工作区的状态(如果已经commit，则需要配合reset)
 
 5. git revert HEAD
