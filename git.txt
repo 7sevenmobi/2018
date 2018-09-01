@@ -1,8 +1,8 @@
 
-1. git rm --cache fileName
+1. git rm --cache fileName / git rm -r --cache . (删除所有)
         删除缓存区或分支中的对应文件，工作区保留但是不会被追踪（常见应用于配置.gitignore）
 
-2. git rm fileName
+2. git rm fileName / git rm -r . (删除所有)
         同时删除缓存区、分支和工作区的对应文件
 
 3. git reset --hard HEAD
