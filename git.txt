@@ -10,6 +10,6 @@
         将工作区中所有文件回退到上一次commit的状态
 
 4. git checkout -- git.txt
-        将单个文件从HEAD中签出，回退到上一次未commit的状态(尝试多次无法使用？？)
+        将单个文件回退到上一次在工作区的状态(如果已经add或者commit，则需要配合reset)
 
 5. git revert HEAD
