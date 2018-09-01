@@ -1,0 +1,12 @@
+zhao
+qian
+sun 
+li
+
+
+sort < sort.txt >> sort.txt生成：
+
+li
+qian
+sun 
+zhao

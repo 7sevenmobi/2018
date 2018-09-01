@@ -22,6 +22,7 @@ let Task = mongoose.model('Task',schema);
 router.get('/', function(req, res, next) {
   res.render('users');
 })
+
 router.post('/',function(req,res,next){
     let uname = req.body.username.toString();
     let uemail = req.body.email.toString();

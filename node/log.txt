@@ -1,3 +1,0 @@
-data written by writefile
-
-function in fs.js file
