@@ -1,0 +1,9 @@
+
+1. git rm --cache fileName
+        删除缓存区或分支中的对应文件，工作区保留但是不会被追踪（常见应用于配置.gitignore）
+
+2. git rm fileName
+        同时删除缓存区、分支和工作区的对应文件
+
+3. git reset --hard HEAD
+        将缓存区中所有文件回退到上一次add的状态
