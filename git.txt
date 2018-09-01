@@ -5,9 +5,13 @@
 2. git rm fileName / git rm -r . (删除所有)
         同时删除缓存区、分支和工作区的对应文件
 
-3. git reset --hard HEAD
-    git reset HEAD e392d71(这个值是上一次add后的版本指针，由git返回)
-        将工作区中所有文件回退到上一次commit的状态
+3. git reflog
+        查看对HEAD指针的操作历史
+
+4. git reset HEAD e392d71(这个值是每一次对HEAD操作过后的版本指针)
+        利用reflog命令返回的数据，设置HEAD指针值，将工作区中所有文件回退到指定状态
+        快捷操作：git reset --hard HEAD^  回退到上一个版本
+                 git reset --hard HEAD^^ 回退到上上个版本
 
 4. git checkout -- git.txt
         将单个文件回退到上一次在工作区的状态(如果已经add或者commit，则需要配合reset)
