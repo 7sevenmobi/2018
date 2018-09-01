@@ -9,4 +9,4 @@
     git reset HEAD e392d71(这个值是上一次add后的版本指针，由git返回)
         将工作区中所有文件回退到上一次commit的状态
 4. git checkout -- git.txt
-1
+12
