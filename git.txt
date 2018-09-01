@@ -11,3 +11,5 @@
 
 4. git checkout -- git.txt
         将单个文件从HEAD中签出，回退到上一次未commit的状态(尝试多次无法使用？？)
+
+5. git revert HEAD
