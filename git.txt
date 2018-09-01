@@ -6,4 +6,7 @@
         同时删除缓存区、分支和工作区的对应文件
 
 3. git reset --hard HEAD
-        将缓存区中所有文件回退到上一次add的状态
+    git reset HEAD e392d71(这个值是上一次add后的版本指针，由git返回)
+        将工作区中所有文件回退到上一次commit的状态
+4. git checkout -- git.txt
+1
