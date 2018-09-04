@@ -23,5 +23,3 @@ git commit是把暂存区的所有内容提交到当前分支。
         将单个文件回退到上一次在工作区的状态(如果已经commit，则需要配合reset)
 
 5. git revert HEAD
-
-6. clone GitHub单个文件（文件夹）
