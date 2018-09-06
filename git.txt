@@ -23,3 +23,13 @@ git commit是把暂存区的所有内容提交到当前分支。
         将单个文件回退到上一次在工作区的状态(如果已经commit，则需要配合reset)
 
 5. git revert HEAD
+
+6. git branch -a 
+        查看本地和远程所有分支
+
+7. git pull <remote_branch>:<local_branch>
+        如果当前分支是dev，想要将远程分支master和本地分支master同步，但是又不想切换到dev
+    git pull <remote_branch>
+        将<remote_branch>和本地当前分支同步
+    git pull
+        学习中
