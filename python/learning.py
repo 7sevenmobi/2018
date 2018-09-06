@@ -5,7 +5,7 @@
 '''
 
 '''
-一、数据类型
+一、数据类型（type函数获取）
     A、str（字符串）
         1、字符串可以使用单引号或双引号
         2、字符串中可使用\t表示制表符，\n表示换行符
@@ -17,8 +17,9 @@
             msg.strip()：删除首尾空白。'h'和'h '并不相等
             msg.rstrip()：删除右空白
             msg.lstrip()：删除左空白
+            msg[0:3:1]：切片，字符串截取
 
-    B、数值
+    B、数值（int、float）
         1、整数int、浮点数float。注意：如果对整数做除法运算，结果会返回一个整数（截除小数部分，也不会四舍五入）
         n、各种方法
             str(23)：将数值类型23转换成字符串类型23。例：'hi'+str(23)+'th'
@@ -37,9 +38,9 @@
                 vips.reverse()：将vips成员倒序排列（修改vips内部结构）
                 sorted(vips)：将vips成员正序排列（不会修改vips内部结构，相当于操作其副本）
                 len(vips)：计算vips列表长度
-                list(range(1,11,2))：range函数返回1（起始）到11（终止）之间的偶数，list函数将每个返回值作为成员，组成一个数值列表并将其返回
+                list(range(1,11,2))：range函数返回的偶数，list函数将每个返回值作为成员，组成一个数值列表并将其返回
 
-            列表解析：
+            列表解析（list comprehensions）：
                 squares = [val**2 for val in range(1,6)]：生成一个 由1（起始）到6（终止）之间每个数的平方 组成的数值列表
                 等同于下面代码功能：
                     squares = []
@@ -57,12 +58,12 @@
                                 （如果没有index参数，删除的是列表最后一个成员）
 
             获取成员：
-                vips[start:end]：切片。获取vips列表从start索引处开始，到end索引处结束这中间的所有成员
-                                两个参数可以同时省略，此时表示 从起始处开始 切片 一直到末尾（复制一个副本）
+                切片
 
     F、tuple（元组）
-        1、不能修改成员引用的列表称为 元组
+        1、不能修改成员引用值的list称为 元组，所以它也是list的一种
         2、可以获取成员值
+            切片
 
     G、dict（字典，可以理解为对象）
         1、key必须是不可变对象（基本数据类型），且不支持相同的键值对（后写入的key的value会覆盖前面相同的key的value）
@@ -75,11 +76,15 @@
         n、各种方法：
             删除成员
                 d.pop(key)
-            获取成员
+            获取成员的value值
                 d.get(key)
+            获取dict所有成员的value值（返回 成员值 组成的list）(for in通过检索key的方式更节省内存，因为不需要生成list再检索)
+                d.values()
+            获取dict所有成员（返回 成员键值元组 组成的list）
+                d.items()
 
     H、set
-        1、使用list生成，不支持相同的值
+        1、接受一个Iterable类型的参数，返回一个无序的dict（自动删除相同的成员）
         n、各种方法：
             添加成员
                 s.add(value)
@@ -99,30 +104,43 @@
         1、for vip in vips：遍历
         2、while循环
 
-三、函数
+三、函数（先声明后调用）
     A、定义函数
         def fnName(args):
             函数体
         当函数体仅有一条语句pass时，函数没有任何功能，相当于一个占位符
+
     B、函数参数
         参数可使用5种参数（如果同时使用，一定按照下列顺序），分别是：
         必选参数：fnName(arg)
                     必不可少的参数
         默认参数（默认参数最好使用不变对象，否则会出现意想不到的逻辑错误）：fnName(arg1,arg2=value)
                     当只传入一个参数时，第二个参数默认使用value值
-        可变参数：fnName(arg1,*arg2)，
+        可变参数：fnName(arg1,*arg2)
                     当传入参数个数超过一个时，超过的参数在函数体内封装成一个tuple，由可变参数arg2接收
-        命名关键字参数（可使用默认值）：fnName(arg1,*,arg3)或fnName(arg1,*arg2,arg3)
+        命名关键字参数（可使用默认值，避免调用时没有传命名关键字参数而报错）：fnName(arg1,*,arg3)或fnName(arg1,*arg2,arg3)
                         对关键字参数做出限制。如果一定要传入关键字参数，参数名一定要是arg3
         关键字参数：fnName(arg1,**arg2)
                         可传入任意多个含有参数名的参数，在函数体内封装成一个dict，由关键字参数arg2接收
-                    
-'''
-# 函数示例
-def person(name,age=18):
-    print(name,age)
 
-person('7seven',213)
+四、高阶特性
+    A、切片
+        1、operationObj[start:end:step]：
+            从operationObj的start（省略时值为0）索引处开始，
+            每跳过step个成员截取，
+            一直截取到end（省略时值为operationObj的长度）索引处结束
+        2、用途：
+            字符串截取、list截取、tuple截取
+
+    B、迭代for in（遍历）
+        1、操作对象必须是一个可迭代对象
+        2、判断操作对象的可迭代性：
+            from collections.abc import Iterable
+            isinstance(operationObj,Iterable)
+
+    C、列表解析（list comprehensions）
+
+'''
 # str示例
 # msg = 'hello world'
 # print(msg)
@@ -144,10 +162,14 @@ person('7seven',213)
 # d['qian'] = 00
 # print(d.get('li'))      # 42
 # print(d.pop('li'),d)    # 42 {'wang':25,'qian':00}
+# print(d.values())       # dict_values([25, 42, 23])
+# print(d.items())        # dict_items([('wang', 25), ('li', 42), ('qian', 23)])
 
 # set示例
 # s = set([1,4,3,1,3])
+# s2 = set('zhao')
 # print(s)    # {1,3,4}
+# print(s2)    # {'h', 'z', 'a', 'o'}
 
 # 流程控制语句示例
 # inp = input('please inputer a number：')
@@ -160,3 +182,42 @@ person('7seven',213)
 #     inp = input('please inputer a number: ')
 # else:
 #     print(inp)
+
+# 函数示例
+# def person(name,age=18,*job,sex=None,nation=None,**gf):
+#     print('name: ',name,'\nage; ',age,'\njob: ',job,'\nsex: ',sex,'\nnation: ',nation,'\ngf: ',gf)
+# person('7seven',213,'dashu',gf='linux')
+# name:  7seven
+# age;  213
+# job:  ('dashu',)
+# sex:  None
+# nation:  None
+# gf:  {'gf': 'linux'}
+
+# 切片示例
+# strings = 'hello world'
+# lists = list(range(50))
+# tuples = (12,43,12,21)
+# print(strings[:len(strings)-3:2],'\n',lists[::2],'\n',tuples[::1])
+
+# 迭代示例
+# from collections.abc import Iterable
+# strings = '7seven'
+# lists = [12,3,21,4,3]
+# tuples = (21,'hehe',232)
+# dicts = {'name':'7seven','age':23,'sex':'man'}
+# sets = set(strings)
+# # 上述都是可迭代对象
+# # print(isinstance(strings,Iterable))
+# # print(isinstance(lists,Iterable))
+# # print(isinstance(tuples,Iterable))
+# # print(isinstance(dicts,Iterable))
+# # print(isinstance(sets,Iterable))
+# for k,v in dicts.items():
+#     print(k,v)
+
+# 列表解析
+# print([m+n for m in 'ABCD' for n in 'abcd'])
+# ['Aa', 'Ab', 'Ac', 'Ad', 'Ba', 'Bb', 'Bc', 'Bd', 'Ca', 'Cb', 'Cc', 'Cd', 'Da', 'Db', 'Dc', 'Dd']
+# print([i for i in set([12,23,32,12,34,21,32]) if i%2==0])
+# [32, 34, 12]
