@@ -6,7 +6,20 @@
 
 '''
 一、数据类型（type函数获取）
-    A、str（字符串）
+    
+    A、数值（int、float）
+        1、整数int、浮点数float。注意：如果对整数做除法运算，结果会返回一个整数（截除小数部分，也不会四舍五入）
+        n、各种方法
+            str(23)：将数值类型23转换成字符串类型23。例：'hi'+str(23)+'th'
+
+    B、bool
+        1、True、False（0、空字符串、空list等）
+        2、逻辑运算符：and（且）、or（或）、not（非）
+    
+    C、None：不存在的
+
+    # 下列都是集合数据类型
+    D、str（字符串）
         1、字符串可以使用单引号或双引号
         2、字符串中可使用\t表示制表符，\n表示换行符
         n、各种方法：
@@ -18,17 +31,6 @@
             msg.rstrip()：删除右空白
             msg.lstrip()：删除左空白
             msg[0:3:1]：切片，字符串截取
-
-    B、数值（int、float）
-        1、整数int、浮点数float。注意：如果对整数做除法运算，结果会返回一个整数（截除小数部分，也不会四舍五入）
-        n、各种方法
-            str(23)：将数值类型23转换成字符串类型23。例：'hi'+str(23)+'th'
-
-    C、bool
-        1、True、False（0、空字符串、空list等）
-        2、逻辑运算符：and（且）、or（或）、not（非）
-
-    D、None：不存在的
 
     E、list（列表，可以理解为数组）
         1、列表成员可以是任何数据类型
@@ -133,12 +135,18 @@
             字符串截取、list截取、tuple截取
 
     B、迭代for in（遍历）
-        1、操作对象必须是一个可迭代对象
+        1、操作对象必须是一个可迭代对象（集合数据对象和生成器）
         2、判断操作对象的可迭代性：
             from collections.abc import Iterable
             isinstance(operationObj,Iterable)
 
     C、列表解析（list comprehensions）
+
+    D、Generator（生成器）
+        1、可遍历对象，类似JS的Generator
+        2、生成方法：
+            一、将生成list方式的中括号改成小括号g = (x*x for x in range(10))
+            二、yield
 
 '''
 # str示例
@@ -221,3 +229,51 @@
 # ['Aa', 'Ab', 'Ac', 'Ad', 'Ba', 'Bb', 'Bc', 'Bd', 'Ca', 'Cb', 'Cc', 'Cd', 'Da', 'Db', 'Dc', 'Dd']
 # print([i for i in set([12,23,32,12,34,21,32]) if i%2==0])
 # [32, 34, 12]
+
+# 生成器
+# 斐波拉契数列1 1 2 3 5 8 13 21 ...
+# def fib(num=5):
+#     counter,prev,result = 0,0,1
+#     while counter < num:
+#         yield result
+#         # t = (result,result+prev)
+#         # prev = t[0]
+#         # result = t[1]
+#         prev,result = result,result + prev
+#         # 不同于下述赋值
+#         # prev = result
+#         # result = result + prev
+
+#         counter = counter + 1
+#     return 'done'
+
+# # 1 1 2 3 5 没有返回done
+# # for x in fib():
+# #     print(x)
+
+# # 1 1 2 3 5 done
+# g = fib()
+# while True:
+#     try:
+#         print(next(g))
+#     except StopIteration as e:
+#         print(e.value)
+#         break
+
+# 凡是可作用于for循环的对象都是Iterable类型；
+# 凡是可作用于next()函数的对象都是Iterator类型，它们表示一个惰性计算的序列；
+# 集合数据类型如list、dict、str等是Iterable但不是Iterator，不过可以通过iter()函数获得一个Iterator对象。
+
+# Python的for循环本质上就是通过不断调用next()函数实现的，例如：
+# for x in [1, 2, 3, 4, 5]:
+#     pass
+
+# 实际上完全等价于：
+
+# it = iter([1, 2, 3, 4, 5])
+# while True:
+#     try:
+#         x = next(it)
+#     except StopIteration:   # 捕获到StopIteration异常就退出循环
+#         break
+
