@@ -5,7 +5,7 @@
 '''
 
 '''
-一、数据类型（type函数获取）
+一、数据类型（isinstance、type函数获取）
     
     A、数值（int、float）
         1、整数int、浮点数float。注意：如果对整数做除法运算，结果会返回一个整数（截除小数部分，也不会四舍五入）
@@ -123,7 +123,7 @@
         命名关键字参数（可使用默认值，避免调用时没有传命名关键字参数而报错）：fnName(arg1,*,arg3)或fnName(arg1,*arg2,arg3)
                         对关键字参数做出限制。如果一定要传入关键字参数，参数名一定要是arg3
         关键字参数：fnName(arg1,**arg2)
-                        可传入任意多个含有参数名的参数，在函数体内封装成一个dict，由关键字参数arg2接收
+                        可传入任意多个含有参数名的参数(键值对))，在函数体内封装成一个dict，由关键字参数arg2接收
 
 四、高阶特性
     A、切片
@@ -148,6 +148,29 @@
             一、将生成list方式的中括号改成小括号g = (x*x for x in range(10))
             二、yield
 
+五、模块和作用域
+    A、模块
+        1、为防止模块过多导致模块名冲突，可将模块打包。
+        2、导入模块时，解释器的搜索路径：当前目录->已安装的内置模块->第三方模块，如果没有所以到将报错
+        3、搜索路径信息存放在sys.path中，因此如果需要改变搜索方向，可以直接修改此变量（程序结束后失效），或者修改系统环境变量
+    B、作用域
+        1、此语言本身没有公共变量和私有变量关键词，因此官方约定一种写法：
+            公共变量：vari
+            私有变量：_vari 或 __vari
+            内置变量：__name__、__doc__等
+
+六、类
+    A、定义
+        1、class Student(object):           # 类名首字母大写，Student继承object类
+            counter = 0                     # 定义类的属性（会被子类继承）
+            def __init__(self,name,*,age):  # 初始化，self代表 类的实例，定义的时候不可省略且必须是作为第一个参数
+                self.__name = name          # 初始化实例的私有变量
+                self.__age = age            # 解释器会在内部将私有变量重新命名，例如_Student__name，所以其实在外部还是可以访问的（不建议外部访问）
+    B、继承和多态
+    C、静态语言 vs 动态语言（见runTwice(Camel())）
+        对于静态语言（例如Java）来说，如果需要传入Animal类型，则传入的对象必须是Animal类型或者它的子类，否则，将无法调用run()方法。
+        对于Python这样的动态语言来说，则不一定需要传入Animal类型。我们只需要保证传入的对象有一个run()方法就可以了
+        这就是动态语言的“鸭子类型”，它并不要求严格的继承体系，一个对象只要“看起来像鸭子，走起路来像鸭子”，那它就可以被看做是鸭子。
 '''
 # str示例
 # msg = 'hello world'
@@ -155,15 +178,18 @@
 # msg = "msg has been changed"
 # print(msg)
 
+
 # list示例
 # vips = ['zhao',8,'sun','li']
 # print(vips.pop(-1))   # li
+
 
 # tuple示例
 # dimensions = (200,[100],43)
 # dimensions[0] = 50    # 报错
 # dimensions[1][0] = 50
 # print(dimensions)       # (200,[50],43)
+
 
 # dict示例
 # d = {'wang':25,'li':42,'qian':23}
@@ -173,11 +199,13 @@
 # print(d.values())       # dict_values([25, 42, 23])
 # print(d.items())        # dict_items([('wang', 25), ('li', 42), ('qian', 23)])
 
+
 # set示例
 # s = set([1,4,3,1,3])
 # s2 = set('zhao')
 # print(s)    # {1,3,4}
 # print(s2)    # {'h', 'z', 'a', 'o'}
+
 
 # 流程控制语句示例
 # inp = input('please inputer a number：')
@@ -191,6 +219,7 @@
 # else:
 #     print(inp)
 
+
 # 函数示例
 # def person(name,age=18,*job,sex=None,nation=None,**gf):
 #     print('name: ',name,'\nage; ',age,'\njob: ',job,'\nsex: ',sex,'\nnation: ',nation,'\ngf: ',gf)
@@ -202,11 +231,13 @@
 # nation:  None
 # gf:  {'gf': 'linux'}
 
+
 # 切片示例
 # strings = 'hello world'
 # lists = list(range(50))
 # tuples = (12,43,12,21)
 # print(strings[:len(strings)-3:2],'\n',lists[::2],'\n',tuples[::1])
+
 
 # 迭代示例
 # from collections.abc import Iterable
@@ -224,11 +255,13 @@
 # for k,v in dicts.items():
 #     print(k,v)
 
+
 # 列表解析
 # print([m+n for m in 'ABCD' for n in 'abcd'])
 # ['Aa', 'Ab', 'Ac', 'Ad', 'Ba', 'Bb', 'Bc', 'Bd', 'Ca', 'Cb', 'Cc', 'Cd', 'Da', 'Db', 'Dc', 'Dd']
 # print([i for i in set([12,23,32,12,34,21,32]) if i%2==0])
 # [32, 34, 12]
+
 
 # 生成器
 # 斐波拉契数列1 1 2 3 5 8 13 21 ...
@@ -276,4 +309,47 @@
 #         x = next(it)
 #     except StopIteration:   # 捕获到StopIteration异常就退出循环
 #         break
+
+
+# 类的定义
+# class Student(object):
+#     def __init__(self,name,age):
+#         self.__name = name
+#         self.__age = age
+
+# tom = Student('tom',23)
+# print(tom._Student__name)
+
+# 类的继承和多态
+# class Animal(object):
+#     def run(self):
+#         print('Animal is running...')
+
+# class Dog(Animal):
+#     def run(self):
+#         print('Dog is running...')
+
+# class Cat(Animal):
+#     def run(self):
+#         print('Cat in running...')
+
+# class Camel(object):        # 注意：Camel继承object，而不是Animal
+#     def run(self):          # 注意：Camel继承object，而不是Animal
+#         print('Camel is running...')
+
+# def runTwice(Animal):       #调用的时候，只要实参已经定义了run方法，即使不是Animal类型，也是可以正常运行
+#     Animal.run()
+#     Animal.run()
+
+# d = Dog()
+# d.run()
+
+# c = Cat()
+# c.run()
+
+# # print(isinstance(d,Animal))     # True
+# # print(isinstance(d,Dog))        # True
+
+# runTwice(Cat())                 # Cat in running...
+# runTwice(Camel())               # 注意：Camel继承object，而不是Animal，但是还是正常运行，并打印Camel is running...
 
