@@ -171,6 +171,21 @@
         对于静态语言（例如Java）来说，如果需要传入Animal类型，则传入的对象必须是Animal类型或者它的子类，否则，将无法调用run()方法。
         对于Python这样的动态语言来说，则不一定需要传入Animal类型。我们只需要保证传入的对象有一个run()方法就可以了
         这就是动态语言的“鸭子类型”，它并不要求严格的继承体系，一个对象只要“看起来像鸭子，走起路来像鸭子”，那它就可以被看做是鸭子。
+    D、多重继承（MixIn混入）
+        1、class Dog(Animal,Mammal):
+            pass
+
+七、I/O（I/O接口都是操作系统提供的，语言只是对其进行封装）
+    A、文件数据操作
+    B、内存操作
+        1、StringIO ： 普通数据读取
+        2、BytesIO : 二进制数据读取
+    C、文件目录操作
+
+八、进程、线程
+    A、线程是最小的执行单元，而进程由至少一个线程组成。
+        如何调度进程和线程，完全由操作系统决定，程序自己不能决定什么时候执行，执行多久
+
 '''
 # str示例
 # msg = 'hello world'
@@ -353,3 +368,73 @@
 # runTwice(Cat())                 # Cat in running...
 # runTwice(Camel())               # 注意：Camel继承object，而不是Animal，但是还是正常运行，并打印Camel is running...
 
+
+#I/O
+#文件数据操作
+# a : appdend 追加写入，不会覆盖原数据
+# c : create 
+# r : read
+# w : write   会覆盖原数据
+# rb : 读二进制数据
+# wb : 写二进制数据
+# encoding='gbk'  设置读写时字符编码（默认utf-8）
+# errors='ignore'   忽略编码错误
+
+# file = 'e:/github/2018/test.txt'
+# file = 'e:/github/2018/images/set.png'
+
+# with open(file,'rb') as f:
+#     print(f.read())
+# 等价于下面：
+# try:
+#     f = open(file,'rb')
+#     print(f.readline())
+# finally:
+#     f.close()
+
+# with open(file,'a') as f:
+#     f.write('python i/o test\n')
+
+# 内存操作
+# from io import StringIO
+# f = StringIO()
+# f.write('hello')
+# print(f.getvalue())     # hello
+
+# 文件目录操作
+# import os
+# print(os.environ)       # 获取环境变量
+# print(os.environ.get('path'))     # 获取环境变量具体值
+# curdir = os.path.abspath('.')     # 获取当前文件的绝对路径
+# testdir = os.path.join(curdir,'testdir')    # 路径拼合（不要直接拼合，不同平台路径分隔符不一样）
+# os.mkdir(testdir)
+# os.rmdir(testdir)
+
+# os.listdir('.')   # 获取当前目录下的子文件和子目录
+# 获取当前目录下的所有py后缀的子文件
+# filelist = [x for x in os.listdir('/') if os.path.isfile(x) and os.path.splitext(x)[1]=='.py']
+
+#
+#
+#
+#       如何查找e盘里的指定后缀文件
+#
+#
+#
+
+import os
+import sys
+sys.setrecursionlimit(2000)
+def search(x,ext):
+    if os.path.isfile(x) and os.path.splitext(x)[1]==ext:
+        return True
+    else:
+        search(x,ext)
+
+filelist = []
+ext = '.py'
+curdir = os.listdir('.')
+for x in curdir:
+    if search(x,ext):
+        filelist.append(x)
+print(filelist)

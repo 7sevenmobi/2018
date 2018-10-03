@@ -1,3 +1,5 @@
-﻿just test git reset order
+just test git reset order
 
 written by dos commend  
+python i/o test
+python i/o test
